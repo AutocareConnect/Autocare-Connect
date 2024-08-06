@@ -9,12 +9,12 @@ public interface CustomerService {
 
 	Customer registerCustomer(Customer customer);
 
-	Customer authenticateUser(String email, String password);
+	Customer authenticateCustomer(String email, String password);
 
 	List<Customer> findAllCustomers();
 
-	Optional<Customer> findUserById(int id);
+	Optional<Customer> findCustomerById(int id);
 
-	void deleteUser(int id);
+	void deleteCustomer(int id);
 
 }

@@ -35,7 +35,7 @@ public class CustomerController {
 	 
 	 @PostMapping("/login")
 	    public ResponseEntity<?> login(@RequestParam String email, @RequestParam String password) {
-		 Customer customer = cservice.authenticateUser(email, password);
+		 Customer customer = cservice.authenticateCustomer(email, password);
 	        if (customer != null) {
 	            return ResponseEntity.ok(customer);
 	        } else {
@@ -44,13 +44,13 @@ public class CustomerController {
 	    }
 	 
 	 @GetMapping("/customers")
-	    public ResponseEntity<List<Customer>> getAllUsers() {
+	    public ResponseEntity<List<Customer>> getAllCustomers() {
 	        List<Customer> customers = cservice.findAllCustomers();
 	        return ResponseEntity.ok(customers);
 	    }
 	 @GetMapping("/{id}")
-	    public ResponseEntity<?> getUserById(@PathVariable int id) {
-	        Optional<Customer> customer = cservice.findUserById(id);
+	    public ResponseEntity<?> getCustomerById(@PathVariable int id) {
+	        Optional<Customer> customer = cservice.findCustomerById(id);
 	        if (customer.isPresent()) {
 	            return ResponseEntity.ok(customer.get());
 	        } else {
@@ -59,8 +59,8 @@ public class CustomerController {
 	    }
 	 
 	 @DeleteMapping("/{id}")
-	    public ResponseEntity<?> deleteUser(@PathVariable int id) {
-		 cservice.deleteUser(id);
+	    public ResponseEntity<?> deleteCustomer(@PathVariable int id) {
+		 cservice.deleteCustomer(id);
 	        return ResponseEntity.ok().body("User deleted successfully");
 	    }
 }
