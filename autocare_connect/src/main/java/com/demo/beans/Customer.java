@@ -1,9 +1,14 @@
 package com.demo.beans;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 
@@ -20,11 +25,18 @@ public class Customer {
 	private String address;
 	private String pincode;
 	
+	@OneToMany(mappedBy = "customer")
+	 @JsonIgnore
+    private List<Vehicle> vehicles;
+	
 	public Customer() {
 		super();
 	}
 
-	public Customer(int cid, String cname, String email, String password, String phone, String address, String pincode) {
+	
+
+	public Customer(int cid, String cname, String email, String password, String phone, String address, String pincode,
+			List<Vehicle> vehicles) {
 		super();
 		this.cid = cid;
 		this.cname = cname;
@@ -33,7 +45,23 @@ public class Customer {
 		this.phone = phone;
 		this.address = address;
 		this.pincode = pincode;
+		this.vehicles = vehicles;
 	}
+
+
+
+
+	public List<Vehicle> getVehicles() {
+		return vehicles;
+	}
+
+
+
+	public void setVehicles(List<Vehicle> vehicles) {
+		this.vehicles = vehicles;
+	}
+
+
 
 	public int getCid() {
 		return cid;
