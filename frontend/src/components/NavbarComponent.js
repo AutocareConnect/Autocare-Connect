@@ -1,6 +1,7 @@
+// src/components/NavbarComponent.js
 import React, { useState } from 'react';
-import { Navbar, NavbarBrand, Nav, NavItem, NavLink, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Navbar, NavbarBrand, Nav, NavItem, NavLink as ReactNavLink, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { NavLink } from 'react-router-dom';
 
 const NavbarComponent = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -10,35 +11,34 @@ const NavbarComponent = () => {
     <Navbar color="dark" dark expand="md">
       <NavbarBrand href="/">
         <img alt="logo" src="assets/logo.png" style={{ height: 40, width: 40 }} />
-        Autocare
+        Autocare Connect
       </NavbarBrand>
       <Nav className="ml-auto" navbar>
         <NavItem>
-          <NavLink href="/">Home</NavLink>
+          <ReactNavLink tag={NavLink} to="/">Home</ReactNavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="#solution">Solution</NavLink>
+          <ReactNavLink href="#solution">Solution</ReactNavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="#services">Services</NavLink>
+          <ReactNavLink href="#services">Services</ReactNavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="#contact">Contact Us</NavLink>
+          <ReactNavLink href="#contact">Contact Us</ReactNavLink>
+        </NavItem>
+        <NavItem>
+          <ReactNavLink tag={NavLink} to="/login">Login</ReactNavLink>
         </NavItem>
         <NavItem>
           <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown} nav inNavbar>
             <DropdownToggle nav caret>
-              Login
+              Register
             </DropdownToggle>
             <DropdownMenu right>
-              <DropdownItem tag={Link} to="/login/admin">Admin</DropdownItem>
-              <DropdownItem tag={Link} to="/login/user">User</DropdownItem>
-              <DropdownItem tag={Link} to="/login/service-centre">Service Centre</DropdownItem>
+              <DropdownItem tag={NavLink} to="/register/user">User</DropdownItem>
+              <DropdownItem tag={NavLink} to="/register/service-centre">Service Centre</DropdownItem>
             </DropdownMenu>
           </Dropdown>
-        </NavItem>
-        <NavItem>
-          <NavLink href="#register">Register</NavLink>
         </NavItem>
       </Nav>
     </Navbar>
