@@ -19,6 +19,7 @@ public class ServiceCenter {
     private String name;
     private String email;
     private String password;
+    
     private String phone;
     private String address;
     private String pincode;
