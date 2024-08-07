@@ -23,7 +23,7 @@ public class ServicesServiceImpl implements ServicesService{
 	@Override
 	public List<Services> getServicesByServiceCenter(int serviceCenterId) {
 		// TODO Auto-generated method stub
-		return sdao.findByServiceCenterId(serviceCenterId);
+		return sdao.findByServiceCenterCid(serviceCenterId);
 	}
 
 	@Override

@@ -10,6 +10,6 @@ import com.demo.beans.Services;
 @Repository
 public interface ServicesDao extends JpaRepository<Services, Integer>{
 
-	List<Services> findByServiceCenterId(int serviceCenterId);
+	List<Services> findByServiceCenterCid(int serviceCenterCid);
 
 }
