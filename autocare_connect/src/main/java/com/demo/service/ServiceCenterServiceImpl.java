@@ -57,7 +57,7 @@ public class ServiceCenterServiceImpl implements ServiceCenterService{
             existingServiceCenter.setPhone(updatedServiceCenter.getPhone());
             existingServiceCenter.setAddress(updatedServiceCenter.getAddress());
             existingServiceCenter.setPincode(updatedServiceCenter.getPincode());
-            existingServiceCenter.setWorking_hours(updatedServiceCenter.getClosedDays());
+            existingServiceCenter.setWorkingHours(updatedServiceCenter.getClosedDays());
             existingServiceCenter.setClosedDays(updatedServiceCenter.getClosedDays());
             return sdao.save(existingServiceCenter);
         } else {

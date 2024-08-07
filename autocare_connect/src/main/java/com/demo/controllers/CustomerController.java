@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.beans.Customer;
+import com.demo.beans.UserRole;
 import com.demo.service.CustomerService;
+import com.demo.service.UserRoleService;
 
 
 
@@ -27,21 +29,18 @@ public class CustomerController {
 	@Autowired
 	private CustomerService cservice;
 	
+	@Autowired
+	private UserRoleService urService;
+	
 	 @PostMapping("/register")
 	    public ResponseEntity<?> register(@RequestBody Customer customer) {
 	        Customer registeredCustomer = cservice.registerCustomer(customer);
+	        UserRole userRole = new UserRole(customer.getEmail(),customer.getPassword(),"Customer");
+	        urService.registerCustomerInRole(userRole);
 	        return ResponseEntity.ok(registeredCustomer);
 	    }
 	 
-	 @PostMapping("/login")
-	    public ResponseEntity<?> login(@RequestParam String email, @RequestParam String password) {
-		 Customer customer = cservice.authenticateCustomer(email, password);
-	        if (customer != null) {
-	            return ResponseEntity.ok(customer);
-	        } else {
-	            return ResponseEntity.status(401).body("Invalid email or password");
-	        }
-	    }
+	
 	 
 	 @GetMapping("/customers")
 	    public ResponseEntity<List<Customer>> getAllCustomers() {
