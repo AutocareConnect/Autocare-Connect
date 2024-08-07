@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.beans.ServiceCenter;
+import com.demo.beans.UserRole;
 import com.demo.service.ServiceCenterService;
+import com.demo.service.UserRoleService;
 
 @RestController
 @RequestMapping("/service-center")
@@ -26,22 +28,20 @@ public class ServiceCenterController {
 
     @Autowired
     private ServiceCenterService serviceCenterService;
+    
+    @Autowired
+	private UserRoleService urService;
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody ServiceCenter serviceCenter) {
         ServiceCenter registeredServiceCenter = serviceCenterService.registerServiceCenter(serviceCenter);
+        
+        UserRole userRole = new UserRole(serviceCenter.getEmail(),serviceCenter.getPassword(),"Service Center");
+        urService.registerScInRole(userRole);
         return ResponseEntity.ok(registeredServiceCenter);
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestParam String email, @RequestParam String password) {
-        ServiceCenter serviceCenter = serviceCenterService.authenticateServiceCenter(email, password);
-        if (serviceCenter != null) {
-            return ResponseEntity.ok(serviceCenter);
-        } else {
-            return ResponseEntity.status(401).body("Invalid email or password");
-        }
-    }
+   
 
     @GetMapping("/details")
     public ResponseEntity<?> getServiceCenterDetails(@RequestParam String email) {
