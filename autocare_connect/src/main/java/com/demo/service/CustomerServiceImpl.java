@@ -22,7 +22,7 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 
 	@Override
-	public Customer authenticateUser(String email, String password) {
+	public Customer authenticateCustomer(String email, String password) {
 		// TODO Auto-generated method stub
 		return cdao.findByEmailAndPassword(email,password);
 	}
@@ -34,13 +34,13 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 
 	@Override
-	public Optional<Customer> findUserById(int id) {
+	public Optional<Customer> findCustomerById(int id) {
 		// TODO Auto-generated method stub
 		return cdao.findById(id);
 	}
 
 	@Override
-	public void deleteUser(int id) {
+	public void deleteCustomer(int id) {
 		// TODO Auto-generated method stub
 		cdao.deleteById(id);
 	}
