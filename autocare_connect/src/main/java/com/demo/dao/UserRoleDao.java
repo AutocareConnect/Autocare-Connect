@@ -10,4 +10,6 @@ public interface UserRoleDao extends JpaRepository<UserRole, Integer>{
 
 	UserRole findByEmailAndPassword(String email, String password);
 
+	UserRole findByEmail(String username);
+
 }
